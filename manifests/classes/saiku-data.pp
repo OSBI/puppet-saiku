@@ -39,6 +39,6 @@ file { "/opt/apache-tomcat/webapps/saiku/WEB-INF/classes/saiku-datasources/foodm
 file { "/opt/apache-tomcat/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql":
 	ensure => present,
     content => template('saiku/foodmart_mysql.erb'),
-	notify => Service[tomcat-saiku],
+	#notify => Service[tomcat-saiku],
 }
 }
