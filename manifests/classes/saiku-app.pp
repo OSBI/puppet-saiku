@@ -1,4 +1,4 @@
-ass saiku::app {
+class saiku::app {
 include saiku::data
 
     package { 'saiku':
