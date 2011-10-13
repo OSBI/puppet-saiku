@@ -1,5 +1,5 @@
 class saiku::app {
-include saiku::data
+
 
     package { 'saiku':
         ensure => latest,
