@@ -4,13 +4,13 @@ class saiku {
 
 class { "saiku::webstack":}
 class { "saiku::apt":
-		requires => Class["saiku::webstack"]
+		require => Class["saiku::webstack"]
 	  }
 class { "saiku::app":
-		requires => Class["saiku::apt"]
+		require => Class["saiku::apt"]
 		}
 class { "saiku::data":
-		requires => Class["saiku::app"]}
+		require => Class["saiku::app"]}
 #include saiku::webstack
 #include saiku::apt
 #include saiku::app
