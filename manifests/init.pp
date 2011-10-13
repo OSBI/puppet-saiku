@@ -22,7 +22,7 @@ include apt
 
     package { 'saiku':
         ensure => latest,
-        notify  => Service['tomcat7'],
+        notify  => Service['tomcat-jenkins'],
 		require => Tomcat::Instance["saiku"],
     }
 
