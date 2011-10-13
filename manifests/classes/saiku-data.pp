@@ -36,7 +36,7 @@ file { "/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodma
 	require => File["/srv/tomcat/saiku/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql"],
 }
 
-file { "/srv/tomcat/saiku//webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql":
+file { "/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql":
 	ensure => present,
     content => template('saiku/foodmart_mysql.erb'),
 	#notify => Service[tomcat-saiku],
