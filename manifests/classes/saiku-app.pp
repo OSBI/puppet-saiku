@@ -1,7 +1,7 @@
 class saiku::app {
 
 
-    package { 'saiku':
+    package { "${app_name}":
         ensure => latest,
         #notify  => Service['tomcat-saiku'],
         #require => Tomcat::Instance["saiku"],
