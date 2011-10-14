@@ -33,7 +33,7 @@ exec { "importfoodmart":
 
 file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart":
 	ensure => absent,
-	require => File["/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql"],
+	require => File["/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql"],
 }
 
 file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql":
