@@ -31,12 +31,12 @@ exec { "importfoodmart":
 	require => Mysql::Database["saikudemo"],
 }
 
-file { "/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart":
+file { "/srv/tomcat/${name}/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart":
 	ensure => absent,
 	require => File["/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql"],
 }
 
-file { "/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql":
+file { "/srv/tomcat/${name}/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart_mysql":
 	ensure => present,
     content => template('saiku/foodmart_mysql.erb'),
 	#notify => Service[tomcat-saiku],
