@@ -35,6 +35,20 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
     http_port    => "${tomcat_http}",
   }
 
+  saiku::datasource { "foodmart_dev_${name}":
+      ensure => absent,
+      datasource_name => "foodmart",
+      tomcat_name => "${name}",
+      require => Package["${app_name}"]
+    }
+    
+    saiku::datasource { "foodmart_mysql_dev_${name}" :
+      ensure => present,
+      datasource_name => "foodmart_mysql_${name}",
+      tomcat_name => "${name}",
+      require => Package["${app_name}"]
+    }
+
 
 
 }
