@@ -20,13 +20,15 @@
 #
 class saiku::apt {
   include apt
+  $apt_key = extlookup('alabs_repo_key', '')
+  $apt_content = extlookup('alabs_repo_content', '')
 
   apt::key { "alabs repo":
-    source => "http://debian.analytical-labs.com/public.key"
+    source => "${apt_key}"
   }
 
   apt::sources_list { "analyticallabs":
-    content => "deb http://debian.analytical-labs.com/ natty main"
+    content => "${apt_content}"
   }
 
 
