@@ -22,7 +22,12 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
 
   include tomcat::source
 
-  include saiku::app
+  package { "${app_name}":
+     ensure => latest,
+     #notify  => Service['tomcat-saiku'],
+     require => Tomcat::Instance["${name}"],
+     }
+     
   tomcat::instance {"${name}":
     ensure      => present,
     ajp_port    => "${tomcat_ajp}",
