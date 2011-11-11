@@ -22,14 +22,32 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
 
   include tomcat::source
 
-  include saiku::app
-  
+  package { "${app_name}":
+     ensure => latest,
+     #notify  => Service['tomcat-saiku'],
+     require => Tomcat::Instance["${name}"],
+     }
+     
   tomcat::instance {"${name}":
     ensure      => present,
     ajp_port    => "${tomcat_ajp}",
     server_port    => "${tomcat_server}",
     http_port    => "${tomcat_http}",
   }
+
+  saiku::datasource { "foodmart_dev_${name}":
+      ensure => absent,
+      datasource_name => "foodmart",
+      tomcat_name => "${name}",
+      require => Package["${app_name}"]
+    }
+    
+    saiku::datasource { "foodmart_mysql_dev_${name}" :
+      ensure => present,
+      datasource_name => "foodmart_mysql_${name}",
+      tomcat_name => "${name}",
+      require => Package["${app_name}"]
+    }
 
 
 
