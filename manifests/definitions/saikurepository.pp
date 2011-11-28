@@ -19,11 +19,9 @@
 # MA 02110-1301  USA
 #
 define saiku::repository($tld, $user) {
-  include git::server
   git::repository { $name :
     localtree => $tld,
     owner => $user,
-    require => Class["git::server"],
   }
   
 }
