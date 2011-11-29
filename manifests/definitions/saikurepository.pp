@@ -18,10 +18,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-define saiku::repository($tld, $user) {
+define saiku::repository($tld, $user, $group) {
   git::repository { $name :
     localtree => $tld,
     owner => $user,
+    group => $group,
   }
   
 }
