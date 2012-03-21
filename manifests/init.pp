@@ -18,6 +18,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-import "classes/*.pp"
-import "definitions/*.pp"
-class saiku {}
+
+class saiku {
+#include saiku::webstack
+#include saiku::apt
+#include saiku::app
+#include saiku::data	
+
+
+}
