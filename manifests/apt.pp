@@ -19,7 +19,7 @@
 # MA 02110-1301  USA
 #
 class saiku::apt {
-  include apt
+  include ::apt
   $apt_key = extlookup('alabs_repo_key', '')
   $apt_content = extlookup('alabs_repo_content', '')
 
