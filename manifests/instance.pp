@@ -24,7 +24,8 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
 
   package { "${app_name}":
      ensure => latest,
-     #notify  => Service["tomcat-${name}"],
+     notify  => Service["tomcat-${name}"],
+     require => Tomcat::Instance["${name}"],
      }
      
   tomcat::instance {"${name}":
@@ -38,7 +39,8 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
       ensure => absent,
       datasource_name => "foodmart",
       tomcat_name => "${name}",
-      #notify  => Service["tomcat-${name}"],
+      require =>Package["${app_name}"],
+      notify  => Service["tomcat-${name}"],
     }
     
     saiku::datasource { "foodmart_mysql_dev_${name}" :
@@ -46,9 +48,10 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
       datasource_name => "foodmart_mysql_${name}",
       tomcat_name => "${name}",
       notify  => Service["tomcat-${name}"],
+      require =>Package["${app_name}"],
     }
 
 
-Tomcat::Instance["${name}"] -> Package["$app_name"] -> Saiku::Datasource["foodmart_dev_${name}"] -> Saiku::DataSource["foodmart_mysql_dev_${name}"]
+ #-> Package["$app_name"] -> Saiku::Datasource["foodmart_dev_${name}"] -> Saiku::DataSource["foodmart_mysql_dev_${name}"]
 
 }
