@@ -12,7 +12,7 @@
     "README": "d41d8cd98f00b204e9800998ecf8427e",
     "files/foodmart_mysql.sql": "5c99d62fc05804aa59b45379f55662f6",
     "manifests/app.pp": "644a71deb9abafd39c0af3ba70700167",
-    "manifests/apt.pp": "81dede74393a93bb55923901631fc866",
+    "manifests/apt.pp": "3b5530dd0e69547ab4efe566ce201b52",
     "manifests/datasource.pp": "4af00bf55d42f982c6f038a5000db14d",
     "manifests/init.pp": "5b58bc2d33888f897b6a86f62b8de992",
     "manifests/instance.pp": "e51d99d9b8df363023bf4ca8b42a50a4",

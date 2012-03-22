@@ -23,7 +23,7 @@ class saiku::apt {
   $apt_key = extlookup('alabs_repo_key', '')
   $apt_content = extlookup('alabs_repo_content', '')
 
-  apt::key { "alabs repo":
+  apt::key { "Analytical Labs":
     source => "${apt_key}"
   }
 
