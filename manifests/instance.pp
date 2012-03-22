@@ -20,7 +20,7 @@
 #
 define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomcat_server, $app_name = 'saiku') {
 
-  include tomcat::source
+ # include tomcat::source
 
   package { "${app_name}":
      ensure => latest,
