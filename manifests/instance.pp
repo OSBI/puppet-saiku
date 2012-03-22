@@ -49,6 +49,6 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
     }
 
 
-#Tomcat::Instance["${name}"] -> Package["$app_name"] -> Saiku::Datasource["foodmart_dev_${name}"] -> Saiku::DataSource["foodmart_mysql_dev_${name}"]
+Tomcat::Instance["${name}"] -> Package["$app_name"] -> Saiku::Datasource["foodmart_dev_${name}"] -> Saiku::DataSource["foodmart_mysql_dev_${name}"]
 
 }
