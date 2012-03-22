@@ -25,7 +25,7 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
   package { "${app_name}":
      ensure => latest,
      notify  => Service["tomcat-${name}"],
-     require => Tomcat::Instance["${name}"],
+#     require => Tomcat::Instance["${name}"],
      }
      
   tomcat::instance {"${name}":
@@ -51,7 +51,5 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
       require =>Package["${app_name}"],
     }
 
-
- #-> Package["$app_name"] -> Saiku::Datasource["foodmart_dev_${name}"] -> Saiku::DataSource["foodmart_mysql_dev_${name}"]
 
 }
