@@ -24,7 +24,7 @@ define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomca
 
   package { "${app_name}":
      ensure => latest,
-    # notify  => Service["tomcat-${name}"],
+     notify  => Service["tomcat-${name}"],
      }
      
   tomcat::instance {"${name}":
