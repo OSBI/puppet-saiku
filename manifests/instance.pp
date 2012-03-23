@@ -39,7 +39,7 @@ define saiku::instance($ensure , $app_name = 'saiku') {
       datasource_name => "foodmart_mysql_${name}",
       tomcat_name => "${name}",
       #notify  => Service["tomcat-${name}"],
-     # require =>Package["${app_name}"],
+      require =>Package["${app_name}"],
     }
 
 
