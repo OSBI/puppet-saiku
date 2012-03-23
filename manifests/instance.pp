@@ -31,14 +31,14 @@ define saiku::instance($ensure , $app_name = 'saiku') {
       datasource_name => "foodmart",
       tomcat_name => "${name}",
       require =>Package["${app_name}"],
-    #  notify  => Service["tomcat-${name}"],
+      notify  => Service["tomcat-${name}"],
     }
     
     saiku::datasource { "foodmart_mysql_dev_${name}" :
       ensure => present,
       datasource_name => "foodmart_mysql_${name}",
       tomcat_name => "${name}",
-      #notify  => Service["tomcat-${name}"],
+      notify  => Service["tomcat-${name}"],
       require =>Package["${app_name}"],
     }
 
