@@ -20,7 +20,6 @@
 #
 define saiku::instance($ensure , $app_name = 'saiku') {
 
-  include tomcat::source
 
   package { "${app_name}":
      ensure => latest,
