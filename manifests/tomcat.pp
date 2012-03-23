@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-define saiku::tomcat($ensure, $tomcat_http, $tomcat_ajp, $tomcat_server, $app_name='saiku') {
+define saiku::tomcat($ensure, $tomcat_http, $tomcat_ajp, $tomcat_server) {
 
   include tomcat::source
      
@@ -27,7 +27,6 @@ define saiku::tomcat($ensure, $tomcat_http, $tomcat_ajp, $tomcat_server, $app_na
     ajp_port    => "${tomcat_ajp}",
     server_port    => "${tomcat_server}",
     http_port    => "${tomcat_http}",
-    subscribe => Package["${app_name}"]
   }
 
 }
