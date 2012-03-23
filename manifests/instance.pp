@@ -23,7 +23,7 @@ define saiku::instance($ensure , $app_name = 'saiku') {
 
   package { "${app_name}":
      ensure => latest,
-     notify  => Service["tomcat-${name}"],
+    # notify  => Service["tomcat-${name}"],
      }
 
   saiku::datasource { "foodmart_dev_${name}":

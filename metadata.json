@@ -15,7 +15,7 @@
     "manifests/apt.pp": "3b5530dd0e69547ab4efe566ce201b52",
     "manifests/datasource.pp": "4af00bf55d42f982c6f038a5000db14d",
     "manifests/init.pp": "5b58bc2d33888f897b6a86f62b8de992",
-    "manifests/instance.pp": "ce004a9930f42fb936838e6419b09468",
+    "manifests/instance.pp": "99f92ad155c0740b6c8861249a8ba3f6",
     "manifests/repository.pp": "43d5fdfa61bcdcb19781dc6e959b951c",
     "manifests/tomcat.pp": "9858207b32a9435bffdc46ab27ff2112",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
