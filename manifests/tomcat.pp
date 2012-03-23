@@ -27,7 +27,7 @@ define saiku::tomcat($ensure, $tomcat_http, $tomcat_ajp, $tomcat_server, $app_na
     ajp_port    => "${tomcat_ajp}",
     server_port    => "${tomcat_server}",
     http_port    => "${tomcat_http}",
-    subscribe => "${app_name}"
+    subscribe => Package["${app_name}"]
   }
 
 }
