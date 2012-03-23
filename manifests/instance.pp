@@ -42,5 +42,8 @@ define saiku::instance($ensure , $app_name = 'saiku') {
       require =>Package["${app_name}"],
     }
 
-
+	service{ tomcat-saiku:
+		ensure => running,
+		enable => true,
+	}
 }
