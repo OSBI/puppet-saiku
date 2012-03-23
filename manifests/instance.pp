@@ -18,22 +18,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-define saiku::instance($ensure , $tomcat_name, $tomcat_http, $tomcat_ajp, $tomcat_server, $app_name = 'saiku') {
+define saiku::instance($ensure , $app_name = 'saiku') {
 
   include tomcat::source
 
   package { "${app_name}":
      ensure => latest,
-     #notify  => Service["tomcat-${name}"],
-     require => Tomcat::Instance["${name}"],
+     notify  => Service["tomcat-${name}"],
      }
-     
-  tomcat::instance {"${name}":
-    ensure      => present,
-    ajp_port    => "${tomcat_ajp}",
-    server_port    => "${tomcat_server}",
-    http_port    => "${tomcat_http}",
-  }
 
   saiku::datasource { "foodmart_dev_${name}":
       ensure => absent,
