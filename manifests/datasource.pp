@@ -20,14 +20,14 @@
 #
 define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type = 'mysql5') {
   
-  if($database_type='mysql5'){
+  if($database_type=='mysql5'){
   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
       ensure => $ensure,
       content => template('saiku/foodmart_mysql.erb')
    	}
    }
    
-   if($database_type='vectorwise2'){
+   if($database_type=='vectorwise2'){
    	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
       ensure => $ensure,
       content => template('saiku/foodmart_vectorwise.erb')
