@@ -18,29 +18,33 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-define saiku::instance($ensure , $app_name = 'saiku') {
+define saiku::instance ($ensure,
+	$app_name = 'saiku',
+	$default_datasource = true) {
+	package {
+		"${app_name}" :
+			ensure => latest,
+			#notify  => Service["tomcat-${name}"],
 
+	}
+	saiku::datasource {
+		"foodmart_dev_${name}" :
+			ensure => absent,
+			datasource_name => "foodmart",
+			tomcat_name => "${name}",
+			#require =>Package["${app_name}"],
+			#notify  => Service["tomcat-${name}"],
 
-  package { "${app_name}":
-     ensure => latest,
-     #notify  => Service["tomcat-${name}"],
-     }
+	}
+	if ($default_datasource == true) {
+		saiku::datasource {
+			"foodmart_mysql_dev_${name}" :
+				ensure => present,
+				datasource_name => "foodmart_mysql_${name}",
+				tomcat_name => "${name}",
+				#notify  => Service["tomcat-${name}"],
+				#require =>Package["${app_name}"],
 
-  saiku::datasource { "foodmart_dev_${name}":
-      ensure => absent,
-      datasource_name => "foodmart",
-      tomcat_name => "${name}",
-      #require =>Package["${app_name}"],
-      #notify  => Service["tomcat-${name}"],
-    }
-    
-    saiku::datasource { "foodmart_mysql_dev_${name}" :
-      ensure => present,
-      datasource_name => "foodmart_mysql_${name}",
-      tomcat_name => "${name}",
-      #notify  => Service["tomcat-${name}"],
-      #require =>Package["${app_name}"],
-    }
-
-
+		}
+	}
 }

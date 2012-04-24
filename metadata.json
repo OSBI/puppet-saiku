@@ -13,14 +13,15 @@
     "files/foodmart_mysql.sql": "5c99d62fc05804aa59b45379f55662f6",
     "manifests/app.pp": "644a71deb9abafd39c0af3ba70700167",
     "manifests/apt.pp": "3b5530dd0e69547ab4efe566ce201b52",
-    "manifests/datasource.pp": "4af00bf55d42f982c6f038a5000db14d",
+    "manifests/datasource.pp": "cbc933fa3109cb2ba426d72cf6d5d159",
     "manifests/init.pp": "5b58bc2d33888f897b6a86f62b8de992",
-    "manifests/instance.pp": "5a9ced32d6d1b3f0ddfa8bf0a417403f",
+    "manifests/instance.pp": "ce1087482c180d9485b32f4f429974e2",
     "manifests/repository.pp": "43d5fdfa61bcdcb19781dc6e959b951c",
     "manifests/tomcat.pp": "9858207b32a9435bffdc46ab27ff2112",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
     "spec/spec_helper.rb": "ca19ec4f451ebc7fdb035b52eae6e909",
     "templates/foodmart_mysql.erb": "ce7c3c91bdf688dcaa8e49f42a91bcd3",
+    "templates/foodmart_vectorwise.erb": "14f4d871c87bcd54cb2475c1ccb50660",
     "tests/init.pp": "8b9b36aace8d62e0f258959746c274ee"
   },
   "dependencies": [
