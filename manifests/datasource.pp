@@ -25,6 +25,16 @@ define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type
       ensure => $ensure,
       content => template('saiku/foodmart_mysql.erb')
    	}
+   		#mysql jar
+		file {
+			'/opt/apache-tomcat/lib/mysql-connector-java-5.1.17.jar' :
+				ensure => present,
+				owner => "tomcat",
+				group => "tomcat",
+				source => "puppet:///modules/saiku/mysql-connector-java-5.1.17.jar",
+				mode => 755,
+		}
+	
    }
    
    if($database_type=='vectorwise2'){
@@ -32,6 +42,16 @@ define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type
       ensure => $ensure,
       content => template('saiku/foodmart_vectorwise.erb')
    	}
+   	
+   			file {
+			'/opt/apache-tomcat/lib/iijdbc.jar' :
+				ensure => present,
+				owner => "tomcat",
+				group => "tomcat",
+				source => "puppet:///modules/saiku/iijdbc.jar",
+				mode => 755,
+		}
+		
    }
 
 }
