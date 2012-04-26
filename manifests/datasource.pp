@@ -53,5 +53,22 @@ define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type
 		}
 		
    }
+   
+   if($database_type=='postgresql8'){
+   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
+      ensure => $ensure,
+      content => template('saiku/foodmart_postgresql.erb')
+   	}
+   	
+   			file {
+			'/opt/apache-tomcat/lib/postgresql-9.1-901.jdbc4.jar' :
+				ensure => present,
+				owner => "tomcat",
+				group => "tomcat",
+				source => "puppet:///modules/saiku/postgresql-9.1-901.jdbc4.jar",
+				mode => 755,
+		}
+		
+   }
 
 }
