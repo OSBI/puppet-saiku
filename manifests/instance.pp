@@ -47,4 +47,30 @@ define saiku::instance ($ensure,
 
 		}
 	}
+
+	#mysql jar
+	file {
+		'/opt/apache-tomcat/lib/mysql-connector-java-5.1.17.jar' :
+			ensure => present,
+			owner => "tomcat",
+			group => "tomcat",
+			source => "puppet:///modules/saiku/mysql-connector-java-5.1.17.jar",
+			mode => 755,
+	}
+	file {
+		'/opt/apache-tomcat/lib/iijdbc.jar' :
+			ensure => present,
+			owner => "tomcat",
+			group => "tomcat",
+			source => "puppet:///modules/saiku/iijdbc.jar",
+			mode => 755,
+	}
+	file {
+		'/opt/apache-tomcat/lib/postgresql-9.1-901.jdbc4.jar' :
+			ensure => present,
+			owner => "tomcat",
+			group => "tomcat",
+			source => "puppet:///modules/saiku/postgresql-9.1-901.jdbc4.jar",
+			mode => 755,
+	}
 }
