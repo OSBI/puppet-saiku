@@ -17,7 +17,7 @@
     "files/postgresql-9.1-901.jdbc4.jar": "c07187b9ac3294be59e05eeac588cff2",
     "manifests/app.pp": "644a71deb9abafd39c0af3ba70700167",
     "manifests/apt.pp": "9f7083a12f3bb561103aff886113c399",
-    "manifests/datasource.pp": "1450d99a70d7d6c8b3d7a326f86fbbc0",
+    "manifests/datasource.pp": "d66021ccf746140b08fdf439070ec348",
     "manifests/init.pp": "5b58bc2d33888f897b6a86f62b8de992",
     "manifests/instance.pp": "a06bad1571932132801b952a7ce4fd52",
     "manifests/tomcat.pp": "9858207b32a9435bffdc46ab27ff2112",

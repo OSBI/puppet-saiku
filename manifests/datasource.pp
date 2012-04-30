@@ -18,9 +18,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type = 'mysql5') {
+define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type = "mysql5") {
   
-  if($database_type=='mysql5'){
+  if($database_type=="mysql5"){
   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
       ensure => $ensure,
       content => template('saiku/foodmart_mysql.erb')
@@ -29,7 +29,7 @@ define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type
 	
    }
    
-   if($database_type=='vectorwise2'){
+   if($database_type=="vectorwise2"){
    	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
       ensure => $ensure,
       content => template('saiku/foodmart_vectorwise.erb')
@@ -38,7 +38,7 @@ define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type
 		
    }
    
-   if($database_type=='postgresql8'){
+   if($database_type=="postgresql8"){
    	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
       ensure => $ensure,
       content => template('saiku/foodmart_postgresql.erb')
