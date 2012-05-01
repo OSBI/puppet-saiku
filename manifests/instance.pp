@@ -34,7 +34,7 @@ define saiku::instance ($ensure,
 	exec { 
 		"chown to tomcat" :
 			command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
-			require => Package["${app_name}"],
+			require => [Package["${app_name}"], Group["tomcatshared"]],
 	}
 	
 	saiku::datasource {
