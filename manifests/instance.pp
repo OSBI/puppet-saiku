@@ -28,10 +28,12 @@ define saiku::instance ($ensure,
 
 	}
 	
-	
+	group { "tomcatshared":
+		ensure => present,
+		}
 	exec { 
 		"chown to tomcat" :
-			command => "chown -R tomcat:tomcat /srv/tomcat/saiku/webapps/",
+			command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
 			require => Package["${app_name}"],
 	}
 	
