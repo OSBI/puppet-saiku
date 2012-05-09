@@ -25,7 +25,7 @@ define saiku::instance ($ensure,
 		"${app_name}" :
 			ensure => latest,
 			#notify  => Service["tomcat-${name}"],
-
+			require => Apt::Key["Analytical Labs"],
 	}
 	
 	group { "tomcatshared":
