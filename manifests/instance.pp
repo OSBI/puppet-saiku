@@ -21,44 +21,6 @@
 define saiku::instance ($ensure,
 	$app_name = 'saiku',
 	$default_datasource = true) {
-	package {
-		"${app_name}" :
-			ensure => latest,
-			#notify  => Service["tomcat-${name}"],
-			require => Apt::Key["Analytical Labs"],
-	}
-	
-	group { "tomcatshared":
-		ensure => present,
-		}
-	exec { 
-		"chown to tomcat" :
-			command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
-			require => [Package["${app_name}"], Group["tomcatshared"]],
-	}
-	
-	saiku::datasource {
-		"foodmart_dev_${name}" :
-			ensure => absent,
-			datasource_name => "foodmart",
-			tomcat_name => "${name}",
-			#require =>Package["${app_name}"],
-			#notify  => Service["tomcat-${name}"],
-
-	}
-	if ($default_datasource == true) {
-		saiku::datasource {
-			"foodmart_mysql_dev_${name}" :
-				ensure => present,
-				datasource_name => "foodmart_mysql_${name}",
-				tomcat_name => "${name}",
-				#notify  => Service["tomcat-${name}"],
-				#require =>Package["${app_name}"],
-
-		}
-	}
-
-	#mysql jar
 	file {
 		'/opt/apache-tomcat/lib/mysql-connector-java-5.1.17.jar' :
 			ensure => present,
@@ -66,7 +28,7 @@ define saiku::instance ($ensure,
 			group => "tomcat",
 			source => "puppet:///modules/saiku/mysql-connector-java-5.1.17.jar",
 			mode => 755,
-	}
+	} ->
 	file {
 		'/opt/apache-tomcat/lib/iijdbc.jar' :
 			ensure => present,
@@ -74,7 +36,7 @@ define saiku::instance ($ensure,
 			group => "tomcat",
 			source => "puppet:///modules/saiku/iijdbc.jar",
 			mode => 755,
-	}
+	} ->
 	file {
 		'/opt/apache-tomcat/lib/postgresql-9.1-901.jdbc4.jar' :
 			ensure => present,
@@ -82,5 +44,40 @@ define saiku::instance ($ensure,
 			group => "tomcat",
 			source => "puppet:///modules/saiku/postgresql-9.1-901.jdbc4.jar",
 			mode => 755,
+	} ->
+	package {
+		"${app_name}" :
+			ensure => latest,
+			#notify  => Service["tomcat-${name}"],
+			require => Apt::Key["Analytical Labs"],
+	} ->
+	group { "tomcatshared":
+		ensure => present,
+	} ->
+	exec { 
+		"chown to tomcat" :
+			command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
+			require => [Package["${app_name}"], Group["tomcatshared"]],
+	} ->
+	saiku::datasource {
+		"foodmart_dev_${name}" :
+			ensure => absent,
+			datasource_name => "foodmart",
+			tomcat_name => "${name}",
+			#require =>Package["${app_name}"],
+			#notify  => Service["tomcat-${name}"],
+	} 
+	if ($default_datasource == true) {
+		saiku::datasource {
+			"foodmart_mysql_dev_${name}" :
+				ensure => present,
+				datasource_name => "foodmart_mysql_${name}",
+				tomcat_name => "${name}",
+				#notify  => Service["tomcat-${name}"],
+				require =>Package["${app_name}"],
+
+		}
 	}
+
+
 }
