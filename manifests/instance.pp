@@ -28,7 +28,8 @@ define saiku::instance ($ensure,
 			#notify  => Service["tomcat-${name}"],
 			require => Apt::Key["Analytical Labs"],
 	} ->
-	group { "tomcatshared":
+	group { "tomcatshared ${app_name}":
+		name => "tomcatshared",
 		ensure => present,
 	} ->
 	exec { 
