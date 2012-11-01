@@ -32,11 +32,10 @@ define saiku::instance ($ensure,
 		name => "tomcatshared",
 		ensure => present,
 	} ->
-	exec { 
-		"chown to tomcat" :
-			command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
-			require => [Package["${app_name}"], Group["tomcatshared"]],
-	} ->
+#	exec { 
+#		"chown to tomcat" :
+#			command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
+#	} ->
 	saiku::datasource {
 		"foodmart_dev_${name}" :
 			ensure => absent,
