@@ -3,19 +3,23 @@ class saiku::server($app_name, $default_datasource, $database){
     "${app_name}" :
       ensure => latest,
       require => Apt::Key["Analytical Labs"],
-  } ->
+  }
+  
   group { "tomcatshared ${app_name}":
     name => "tomcatshared",
     ensure => present,
-  } ->
+  }
+  
  exec { 
    "chown to tomcat" :
      command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
- } ->
+     require => Package["saiku"],
+ }
+ 
    file { "/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart":
       ensure => absent,
-     notify          => Service["tomcat-saiku"],
-      
+      notify          => Service["tomcat-saiku"],
+      require => Package["saiku"],
         }
   if ($default_datasource == true) {
     saiku::datasource {
