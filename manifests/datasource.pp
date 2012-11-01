@@ -21,31 +21,22 @@
 define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type = "mysql5") {
   
   if($database_type=="mysql5"){
+	$template = "mysql"
+}
+if($database_type=="vectorwise2"){
+	$template ="vectorwise"
+}
+if($database_type=="postgresl8"){
+	$template="postgresql"
+}
+
   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
-      ensure => $ensure,
-      content => template('saiku/foodmart_mysql.erb')
+      	ensure => $ensure,
+      	content => template("saiku/foodmart_${template}.erb"),
+	#require => Package["saiku"],
+	notify          => Service["tomcat-saiku"],
    	}
 
 	
    }
-   
-   if($database_type=="vectorwise2"){
-   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
-      ensure => $ensure,
-      content => template('saiku/foodmart_vectorwise.erb')
-   	}
 
-		
-   }
-   
-   if($database_type=="postgresql8"){
-   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
-      ensure => $ensure,
-      content => template('saiku/foodmart_postgresql.erb')
-   	}
-   	
-
-		
-   }
-
-}
