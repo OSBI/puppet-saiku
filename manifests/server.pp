@@ -14,6 +14,7 @@ class saiku::server($app_name, $default_datasource, $database){
  } ->
    file { "/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart":
       ensure => absent,
+     notify          => Service["tomcat-saiku"],
       
         }
   if ($default_datasource == true) {
