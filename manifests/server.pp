@@ -12,14 +12,14 @@ class saiku::server($app_name, $default_datasource, $database){
 #   "chown to tomcat" :
 #     command => "chown -R tomcat:tomcatshared /srv/tomcat/saiku/webapps/",
 # } ->
-  saiku::datasource {
-    "foodmart_dev_saiku" :
-      ensure => absent,
-      datasource_name => "foodmart",
-      tomcat_name => "${name}",
-      require =>Package["${app_name}"],
-      notify  => Service["tomcat-saiku"],
-  } 
+#  saiku::datasource {
+#    "foodmart_dev_saiku" :
+#      ensure => absent,
+#      datasource_name => "foodmart",
+#      tomcat_name => "${name}",
+#      require =>Package["${app_name}"],
+#      notify  => Service["tomcat-saiku"],
+#  } 
   if ($default_datasource == true) {
     saiku::datasource {
       "foodmart_${database}_dev_saiku" :
