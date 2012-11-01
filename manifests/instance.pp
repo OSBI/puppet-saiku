@@ -20,7 +20,7 @@
 #
 define saiku::instance ($ensure,
 	$app_name = 'saiku',
-	$default_datasource = true) {
+	$default_datasource = true, $database = 'mysql') {
 	
 	package {
 		"${app_name}" :
@@ -47,13 +47,13 @@ define saiku::instance ($ensure,
 	} 
 	if ($default_datasource == true) {
 		saiku::datasource {
-			"foodmart_mysql_dev_${name}" :
+			"foodmart_${database}_dev_${name}" :
 				ensure => present,
-				datasource_name => "foodmart_mysql_${name}",
+				datasource_name => "foodmart_${database}_${name}",
 				tomcat_name => "${name}",
 				#notify  => Service["tomcat-${name}"],
 				require =>Package["${app_name}"],
-
+        database_type => $database,
 		}
 	}
 
