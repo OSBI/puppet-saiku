@@ -1,7 +1,7 @@
 class saiku::server($app_name, $default_datasource, $database){
   package {
     "${app_name}" :
-      ensure => held,
+      ensure => latest,
       require => Apt::Key["Analytical Labs"],
   } ->
   group { "tomcatshared ${app_name}":
@@ -14,7 +14,7 @@ class saiku::server($app_name, $default_datasource, $database){
  } ->
    file { "/srv/tomcat/saiku/webapps/saiku/WEB-INF/classes/saiku-datasources/foodmart":
       ensure => absent,
-      notify  => Service["tomcat-saiku"],
+      
         }
   if ($default_datasource == true) {
     saiku::datasource {
