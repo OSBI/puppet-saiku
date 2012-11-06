@@ -33,7 +33,7 @@ if($database_type=="postgresl8"){
     $vectorw_password = $::vw_password
     
   } else {
-    $vw_password= "password"
+    $vectorw_password = "password"
   }
   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
       	ensure => $ensure,
