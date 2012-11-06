@@ -29,11 +29,15 @@ if($database_type=="vectorwise2"){
 if($database_type=="postgresl8"){
 	$template="postgresql"
 }
-
+  if $::vectorwise_exists == "true" {
+    $vectorw_password = $::vw_password
+    
+  } else {
+    $vw_password= "password"
+  }
   	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
       	ensure => $ensure,
       	content => template("saiku/foodmart_${template}.erb"),
-	#require => Package["saiku"],
 	notify          => Service["tomcat-saiku"],
    	}
 
