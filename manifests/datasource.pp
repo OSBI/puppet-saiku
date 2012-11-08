@@ -1,6 +1,6 @@
 #
 # saikudatasource.pp
-# 
+#
 # Copyright (c) 2012, OSBI Ltd. All rights reserved.
 #
 # This library is free software; you can redistribute it and/or
@@ -18,29 +18,46 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-define saiku::datasource($ensure, $tomcat_name, $datasource_name, $database_type = "mysql5") {
-  
-  if($database_type=="mysql5"){
-	$template = "mysql"
-}
-if($database_type=="vectorwise2"){
-	$template ="vectorwise"
-}
-if($database_type=="postgresl8"){
-	$template="postgresql"
-}
-  if $::vectorwise_exists == "true" {
-    $vectorw_password = $::vw_password
-    
-  } else {
-    $vectorw_password = "password"
-  }
-  	file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
-      	ensure => $ensure,
-      	content => template("saiku/foodmart_${template}.erb"),
-	notify          => Service["tomcat-saiku"],
-   	}
+define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_type = "mysql5") {
+  if ($database_type == "mysql5") {
+    $template = "mysql"
 
-	
-   }
+    file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
+      ensure  => $ensure,
+      content => template("saiku/foodmart_${template}.erb"),
+      notify  => Service["tomcat-saiku"],
+    }
+
+  }
+
+  if ($database_type == "vectorwise2") {
+    $template = "vectorwise"
+
+    if $::vectorwise_exists == "true" {
+      $vectorw_password = $::vw_password
+
+      file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
+        ensure  => $ensure,
+        content => template("saiku/foodmart_${template}.erb"),
+        notify  => Service["tomcat-saiku"],
+        require => File["/home/ingres/.vw"],
+      }
+    } else {
+      $vectorw_password = "password"
+    }
+
+  }
+
+  if ($database_type == "postgresl8") {
+    $template = "postgresql"
+
+    file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
+      ensure  => $ensure,
+      content => template("saiku/foodmart_${template}.erb"),
+      notify  => Service["tomcat-saiku"],
+    }
+
+  }
+
+}
 
