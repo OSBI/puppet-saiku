@@ -48,7 +48,7 @@ define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_typ
 
   }
 
-  if ($database_type == "postgresl8") {
+  if ($database_type == "postgresql8") {
     $template = "postgresql"
 
     file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":

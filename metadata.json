@@ -17,7 +17,7 @@
     "files/mysql-connector-java-5.1.17.jar": "f363ecce2d02ebf6224f8fd3925400d9",
     "files/postgresql-9.1-901.jdbc4.jar": "c07187b9ac3294be59e05eeac588cff2",
     "manifests/apt.pp": "9f7083a12f3bb561103aff886113c399",
-    "manifests/datasource.pp": "7684e8c387f3c89a2019e7f57c609bb3",
+    "manifests/datasource.pp": "8fbfc0dcb56f67eae33028eb2cae1320",
     "manifests/instance.pp": "c2a174bff94178b10ea40f4eaabb1790",
     "manifests/server.pp": "4ae47d685e384a133a6f7bdc6ed3b502",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
