@@ -33,7 +33,6 @@ define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_typ
   if ($database_type == "vectorwise") {
     $template = "vectorwise"
 
-    if $::vectorwise_exists == "true" {
       $vectorw_password = $::vw_password
 
       file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
@@ -42,9 +41,7 @@ define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_typ
         notify  => Service["tomcat-saiku"],
         require => File["/home/ingres/.vw"],
       }
-    } else {
-      $vectorw_password = "password"
-    }
+   
 
   }
 
