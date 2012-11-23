@@ -18,8 +18,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_type = "mysql5") {
-  if ($database_type == "mysql5") {
+define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_type = "mysql") {
+  if ($database_type == "mysql") {
     $template = "mysql"
 
     file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
@@ -30,7 +30,7 @@ define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_typ
 
   }
 
-  if ($database_type == "vectorwise2") {
+  if ($database_type == "vectorwise") {
     $template = "vectorwise"
 
     if $::vectorwise_exists == "true" {
@@ -48,7 +48,7 @@ define saiku::datasource ($ensure, $tomcat_name, $datasource_name, $database_typ
 
   }
 
-  if ($database_type == "postgresql8") {
+  if ($database_type == "postgresql") {
     $template = "postgresql"
 
     file { "/srv/tomcat/${tomcat_name}/webapps/saiku/WEB-INF/classes/saiku-datasources/${datasource_name}":
