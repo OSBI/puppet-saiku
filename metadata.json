@@ -10,9 +10,6 @@
   "checksums": {
     "Modulefile": "108d4ce120a88a73ca3b69098de1f17f",
     "README": "d41d8cd98f00b204e9800998ecf8427e",
-    "files/foodmart_mysql.sql": "5c99d62fc05804aa59b45379f55662f6",
-    "files/foodmart_postgresql.sql.gz": "0e8d45793cd739a6b97d85078490eae8",
-    "files/foodmartvw.tgz": "9ef429dbb2dd0d4fd7c758112ed85400",
     "files/iijdbc.jar": "4015ca3961181aa4a34586053af92d0c",
     "files/mysql-connector-java-5.1.17.jar": "f363ecce2d02ebf6224f8fd3925400d9",
     "files/postgresql-9.1-901.jdbc4.jar": "c07187b9ac3294be59e05eeac588cff2",
